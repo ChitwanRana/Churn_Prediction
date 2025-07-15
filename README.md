@@ -40,7 +40,7 @@ A visually appealing, interactive web application built with Django that predict
 # Windows
 python -m venv venv
 venv\Scripts\activate
-
+```
 
 2. **Install dependencies**
 
@@ -125,4 +125,4 @@ For retraining the model:
 
 
 
-Developed with ❤️ by [Chitwan Rana]
+Developed with ❤️ by Chitwan Rana
