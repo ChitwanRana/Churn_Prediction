@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block title %}Predict Customer Churn{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h4 class="m-0 font-weight-bold text-primary">
+                    <i class="fas fa-user-check me-2"></i>Customer Churn Prediction
+                </h4>
+            </div>
+            <div class="card-body">
+                <p class="mb-4">Fill in the customer information below to predict whether they are likely to churn.</p>
+                
+                <form method="post" action="{% url 'predict_churn' %}">
+                    {% csrf_token %}
+                    
+                    <div class="row">
+                        <div class="col-md-12 mb-4">
+                            <h5 class="text-primary">Customer Demographics</h5>
+                            <hr>
+                        </div>
+                        
+                        <div class="col-md-3 mb-3">
+                            <label for="{{ form.gender.id_for_label }}" class="form-label">Gender</label>
+                            {{ form.gender }}
+                        </div>
+                        
+                        <div class="col-md-3 mb-3">
+                            <label for="{{ form.senior_citizen.id_for_label }}" class="form-label">Senior Citizen</label>
+                            {{ form.senior_citizen }}
+                        </div>
+                        
+                        <div class="col-md-3 mb-3">
+                            <label for="{{ form.partner.id_for_label }}" class="form-label">Partner</label>
+                            {{ form.partner }}
+                        </div>
+                        
+                        <div class="col-md-3 mb-3">
+                            <label for="{{ form.dependents.id_for_label }}" class="form-label">Dependents</label>
+                            {{ form.dependents }}
+                        </div>
+                        
+                        <div class="col-md-12 mb-4 mt-3">
+                            <h5 class="text-primary">Account Information</h5>
+                            <hr>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.tenure.id_for_label }}" class="form-label">Tenure (months)</label>
+                            {{ form.tenure }}
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.monthly_charges.id_for_label }}" class="form-label">Monthly Charges ($)</label>
+                            {{ form.monthly_charges }}
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.total_charges.id_for_label }}" class="form-label">Total Charges ($)</label>
+                            {{ form.total_charges }}
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.contract.id_for_label }}" class="form-label">Contract</label>
+                            {{ form.contract }}
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.paperless_billing.id_for_label }}" class="form-label">Paperless Billing</label>
+                            {{ form.paperless_billing }}
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.payment_method.id_for_label }}" class="form-label">Payment Method</label>
+                            {{ form.payment_method }}
+                        </div>
+                        
+                        <div class="col-md-12 mb-4 mt-3">
+                            <h5 class="text-primary">Services</h5>
+                            <hr>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.phone_service.id_for_label }}" class="form-label">Phone Service</label>
+                            {{ form.phone_service }}
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.multiple_lines.id_for_label }}" class="form-label">Multiple Lines</label>
+                            {{ form.multiple_lines }}
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.internet_service.id_for_label }}" class="form-label">Internet Service</label>
+                            {{ form.internet_service }}
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.online_security.id_for_label }}" class="form-label">Online Security</label>
+                            {{ form.online_security }}
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.online_backup.id_for_label }}" class="form-label">Online Backup</label>
+                            {{ form.online_backup }}
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.device_protection.id_for_label }}" class="form-label">Device Protection</label>
+                            {{ form.device_protection }}
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.tech_support.id_for_label }}" class="form-label">Tech Support</label>
+                            {{ form.tech_support }}
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.streaming_tv.id_for_label }}" class="form-label">Streaming TV</label>
+                            {{ form.streaming_tv }}
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.streaming_movies.id_for_label }}" class="form-label">Streaming Movies</label>
+                            {{ form.streaming_movies }}
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-calculator me-2"></i>Predict Churn
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

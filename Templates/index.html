@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Telecom Customer Churn Prediction{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card shadow mb-4">
+            <div class="card-body p-5 text-center">
+                <h1 class="display-4 mb-3">Customer Churn Prediction</h1>
+                <p class="lead text-muted mb-4">
+                    Predict whether a customer is likely to leave your telecom service using machine learning.
+                </p>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             class="img-fluid rounded shadow mb-4" alt="Customer Service">
+                    </div>
+                </div>
+                <a href="{% url 'prediction_form' %}" class="btn btn-primary btn-lg me-2">
+                    <i class="fas fa-user-check me-2"></i>Predict Now
+                </a>
+                <a href="{% url 'dashboard' %}" class="btn btn-outline-primary btn-lg">
+                    <i class="fas fa-chart-bar me-2"></i>View Dashboard
+                </a>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card shadow h-100">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-chart-pie fa-3x text-primary mb-3"></i>
+                        <h4>Data-Driven Insights</h4>
+                        <p class="text-muted">
+                            Analyze customer data to understand patterns and factors leading to churn.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow h-100">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-robot fa-3x text-primary mb-3"></i>
+                        <h4>ML Prediction</h4>
+                        <p class="text-muted">
+                            Our machine learning model predicts customer churn with high accuracy.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow h-100">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                        <h4>Customer Retention</h4>
+                        <p class="text-muted">
+                            Identify at-risk customers and take action to improve retention rates.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

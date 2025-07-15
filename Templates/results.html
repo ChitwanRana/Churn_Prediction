@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %}Prediction Results{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h4 class="m-0 font-weight-bold text-primary">
+                    <i class="fas fa-clipboard-check me-2"></i>Prediction Results
+                </h4>
+            </div>
+            <div class="card-body">
+                {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    <i class="fas fa-exclamation-triangle me-2"></i>{{ error }}
+                    <p class="mt-3">Please ensure that:</p>
+                    <ul>
+                        <li>The model file exists at <code>models/model.pkl</code></li>
+                        <li>The data columns match the expected format</li>
+                    </ul>
+                </div>
+                <div class="text-center mt-4">
+                    <a href="{% url 'prediction_form' %}" class="btn btn-primary">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Prediction Form
+                    </a>
+                </div>
+                {% else %}
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <div class="card result-card border-0 shadow {% if will_churn %}churn-yes{% else %}churn-no{% endif %}">
+                            <div class="card-body p-4 text-center">
+                                <h2 class="display-6 mb-3">
+                                    {% if will_churn %}
+                                        <i class="fas fa-exclamation-triangle me-2"></i>
+                                        Customer is likely to churn!
+                                    {% else %}
+                                        <i class="fas fa-check-circle me-2"></i>
+                                        Customer is likely to stay
+                                    {% endif %}
+                                </h2>
+                                <p class="lead mb-0">Churn Probability: <strong>{{ probability }}%</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <h5 class="text-primary">Customer Profile</h5>
+                        <hr>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="mb-4">
+                            <p class="mb-1"><strong>Gender:</strong> {{ customer_data.gender }}</p>
+                            <p class="mb-1"><strong>Senior Citizen:</strong> {% if customer_data.senior_citizen == '1' %}Yes{% else %}No{% endif %}</p>
+                            <p class="mb-1"><strong>Partner:</strong> {{ customer_data.partner }}</p>
+                            <p class="mb-1"><strong>Dependents:</strong> {{ customer_data.dependents }}</p>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h6 class="text-muted">Account Information</h6>
+                            <p class="mb-1"><strong>Tenure:</strong> {{ customer_data.tenure }} months</p>
+                            <p class="mb-1"><strong>Contract:</strong> {{ customer_data.contract }}</p>
+                            <p class="mb-1"><strong>Payment Method:</strong> {{ customer_data.payment_method }}</p>
+                            <p class="mb-1"><strong>Paperless Billing:</strong> {{ customer_data.paperless_billing }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="mb-4">
+                            <h6 class="text-muted">Financial</h6>
+                            <p class="mb-1"><strong>Monthly Charges:</strong> ${{ customer_data.monthly_charges }}</p>
+                            <p class="mb-1"><strong>Total Charges:</strong> ${{ customer_data.total_charges }}</p>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h6 class="text-muted">Phone Service</h6>
+                            <p class="mb-1"><strong>Phone Service:</strong> {{ customer_data.phone_service }}</p>
+                            <p class="mb-1"><strong>Multiple Lines:</strong> {{ customer_data.multiple_lines }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="mb-4">
+                            <h6 class="text-muted">Internet & Additional Services</h6>
+                            <p class="mb-1"><strong>Internet Service:</strong> {{ customer_data.internet_service }}</p>
+                            <p class="mb-1"><strong>Online Security:</strong> {{ customer_data.online_security }}</p>
+                            <p class="mb-1"><strong>Online Backup:</strong> {{ customer_data.online_backup }}</p>
+                            <p class="mb-1"><strong>Device Protection:</strong> {{ customer_data.device_protection }}</p>
+                            <p class="mb-1"><strong>Tech Support:</strong> {{ customer_data.tech_support }}</p>
+                            <p class="mb-1"><strong>Streaming TV:</strong> {{ customer_data.streaming_tv }}</p>
+                            <p class="mb-1"><strong>Streaming Movies:</strong> {{ customer_data.streaming_movies }}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <a href="{% url 'prediction_form' %}" class="btn btn-primary me-2">
+                        <i class="fas fa-redo me-2"></i>Make Another Prediction
+                    </a>
+                    <a href="{% url 'dashboard' %}" class="btn btn-outline-primary">
+                        <i class="fas fa-chart-bar me-2"></i>View Dashboard
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
